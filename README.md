@@ -1,4 +1,4 @@
-# A simple React TypeScript starter app using the Vite bundler
+# A simple React TypeScript app with an auto complete input for searching movies
 
 ## System requirements
 
