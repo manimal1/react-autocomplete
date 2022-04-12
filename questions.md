@@ -18,7 +18,7 @@ You can lift state by using `setState` defined in a parent that is passed down t
 
 - If you are using functional components you can use React.memo(), which achieves the same results as a class based React.PureComponent. It will prevenet rerenderings if there are no changes to the props.
 - If you have some logic that computes a value, and the component rerenders based on that value, you can use the useMemo hook to only compute it once and cache the value. It will only update if the inputs update.
-- If you have a memoized component that receives a function as a prop from the outer component, it will still rerender every time the outer component does unless you use the useCallback hook to momoize the function being passed in. So this too can stop additional rerenders.
+- If you have a memoized component that receives a function as a prop from the outer component, it will still rerender every time the outer component does unless you use the useCallback hook to memoize the function being passed in. So this too can stop additional rerenders.
 
 ## 5. What is a fragment and why do we need it? Give an example where it might break my app.
 
