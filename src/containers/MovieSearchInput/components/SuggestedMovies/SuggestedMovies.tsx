@@ -19,8 +19,8 @@ export const SuggestedMovies: FC<Props> = ({
   }
 
   const onClick = (e: SyntheticEvent) => {
-    const value = (e.target as HTMLInputElement).innerText;
-    selectSuggestedMovie(value);
+    const movieTitle = (e.target as HTMLInputElement).innerText;
+    selectSuggestedMovie(movieTitle);
   };
 
   return (

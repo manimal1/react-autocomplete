@@ -27,8 +27,8 @@ export const MovieSearchInput: FC = () => {
     }
   }, [userInputValue]);
 
-  const getPoster = useCallback((value: string) => {
-    void getMovieData(value)
+  const getPoster = useCallback((movieTitle: string) => {
+    void getMovieData(movieTitle)
       .then((res) => {
         return res.json();
       })
@@ -45,12 +45,12 @@ export const MovieSearchInput: FC = () => {
     setIsMoviesSelected(false);
   };
 
-  const selectSuggestedMovie = (value: string) => {
-    setUserInputValue(value);
+  const selectSuggestedMovie = (movieTitle: string) => {
+    setUserInputValue(movieTitle);
     setSuggestedMovies(['']);
     setSuggestedMovieIndex(0);
     setIsMoviesSelected(true);
-    startTransition(() => getPoster(value));
+    startTransition(() => getPoster(movieTitle));
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
