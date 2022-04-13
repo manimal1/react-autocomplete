@@ -1,8 +1,9 @@
-import React, { ErrorInfo } from 'react';
+import React, { ErrorInfo, ReactNode } from 'react';
 import { Card } from 'components';
 
 interface Props {
   message?: string;
+  children: ReactNode;
 }
 
 interface State {
