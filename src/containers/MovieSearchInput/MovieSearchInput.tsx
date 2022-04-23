@@ -75,7 +75,14 @@ export const MovieSearchInput: FC = () => {
 
   return (
     <div className="auto-complete">
-      <input type="text" className="input" onChange={onChange} onKeyDown={onKeyDown} value={userInputValue} />
+      <input
+        type="text"
+        className="input"
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        value={userInputValue}
+        data-testid="input"
+      />
       {!!suggestedMovies.length && userInputValue && (
         <SuggestedMovies
           isMovieSelected={isMovieSelected}
