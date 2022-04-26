@@ -17,4 +17,5 @@ code {
   padding-left: 12px;
   padding-right: 12px;
   background-color: #e1f5fe;
+  box-sizing: border-box;
 }

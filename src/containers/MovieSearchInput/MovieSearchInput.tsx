@@ -1,4 +1,5 @@
 import { FC, SyntheticEvent, KeyboardEvent, useState, useEffect, useCallback, useTransition } from 'react';
+import { debounce } from 'lodash';
 import { mockApiCall, getMovieData } from 'api';
 import { SuggestedMovies } from './components';
 import { getSuggestedMovies } from './utils';
@@ -12,20 +13,30 @@ export const MovieSearchInput: FC = () => {
   const [posterUrl, setPosterUrl] = useState<string>('');
   const [isLoading, startTransition] = useTransition();
 
+  const getMovieList = useCallback(
+    debounce(
+      (inputValue) =>
+        mockApiCall()
+          .then((res) => {
+            const movieList = res.map((movie) => movie.title);
+            setSuggestedMovies(getSuggestedMovies(movieList, inputValue));
+          })
+          .catch((err) => err),
+      400,
+    ),
+    [],
+  );
+
   useEffect(() => {
     if (userInputValue) {
-      mockApiCall
-        .then((res) => {
-          const movieList = res.map((movie) => movie.title);
-          setSuggestedMovies(getSuggestedMovies(movieList, userInputValue));
-        })
-        .catch((err) => err);
+      getMovieList(userInputValue);
     }
 
     if (!userInputValue) {
       setPosterUrl('');
+      setSuggestedMovies(['']);
     }
-  }, [userInputValue]);
+  }, [userInputValue, getMovieList]);
 
   const getPoster = useCallback((movieTitle: string) => {
     void getMovieData(movieTitle)
@@ -83,14 +94,12 @@ export const MovieSearchInput: FC = () => {
         value={userInputValue}
         data-testid="input"
       />
-      {!!suggestedMovies.length && userInputValue && (
-        <SuggestedMovies
-          isMovieSelected={isMovieSelected}
-          suggestedMovies={suggestedMovies}
-          suggestedMovieIndex={suggestedMovieIndex}
-          selectSuggestedMovie={selectSuggestedMovie}
-        />
-      )}
+      <SuggestedMovies
+        isMovieSelected={isMovieSelected}
+        suggestedMovies={suggestedMovies}
+        suggestedMovieIndex={suggestedMovieIndex}
+        selectSuggestedMovie={selectSuggestedMovie}
+      />
       <div>
         {isLoading && <div>Loading . . .</div>}
         {posterUrl && !isLoading && <img className="poster" src={posterUrl} />}

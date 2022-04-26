@@ -14,7 +14,7 @@ export const SuggestedMovies: FC<Props> = ({
   isMovieSelected,
   selectSuggestedMovie,
 }) => {
-  if (!suggestedMovies || isMovieSelected) {
+  if (!suggestedMovies[0] || isMovieSelected) {
     return null;
   }
 

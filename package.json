@@ -14,6 +14,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "react": "^18.1.0-next-aa05e7315-20220331",
     "react-dom": "^18.1.0-next-aa05e7315-20220331"
   },
@@ -24,6 +25,7 @@
     "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^14.1.0",
     "@types/jest": "^27.4.1",
+    "@types/lodash": "^4.14.182",
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.17.0",

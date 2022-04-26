@@ -2,9 +2,10 @@ import { render } from '@testing-library/react';
 import { test, describe, vi } from 'vitest';
 import { SuggestedMovies } from './SuggestedMovies';
 
+beforeEach(vi.clearAllMocks);
+
 describe('<SuggestedMovies />', () => {
-  beforeEach(vi.clearAllMocks);
-  test('should render a list of suggestedMovies', () => {
+  test('should render a list of suggestedMovies with the first selection having the active class', () => {
     const { getByText } = render(
       <SuggestedMovies
         isMovieSelected={false}
